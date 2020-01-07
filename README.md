@@ -21,6 +21,9 @@ That was a team project created during my education in Codecool.
 * https://github.com/magg666
 
 ## Screenshots:
+All questions:
 ![alt text](https://github.com/KacperMitkowski/Ask-Mate/blob/master/screenshots/ask_mate_1.png)
+Adding new question: 
 ![alt text](https://github.com/KacperMitkowski/Ask-Mate/blob/master/screenshots/ask_mate_2.png)
+Question details:
 ![alt text](https://github.com/KacperMitkowski/Ask-Mate/blob/master/screenshots/ask_mate_3.png)
