@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <meta name="description" content="Awesome page prepared by Magda, Kali and Kacper" />
+    <meta name="keywords" content="question, answer, Codecool, ask mate" />
+    <meta name="author" content="Magda, Kali, Kacper" />
+    <script src="{{ url_for('static',filename='jquery-3.2.1.min.js')}}", type="text/javascript"></script> 
+    <script src="{{ url_for('static',filename='scripts.js')}}", type="text/javascript"></script>
+</head>
+<body onload="time()">
+    <header>
+            <span class="header">Ask Mate</span>
+    </header>
+
+    <nav>
+        <a href="/list">All questions</a>
+        <a href="/add-question">Add question</a>
+
+    </nav>
+    <main>
+        <div style="border-bottom: 1px dotted #000; margin-bottom: 40px;"></div>
+    {% block main %}
+    {% endblock %}
+    </main>
+    <footer>
+            <div id="clock"></div>
+            <h5 id="mailto"><a href="mailto:mw23127@gmail.com" style=" margin-left: 20px; font-size: 25px;">Contact</a></h5>
+    </footer>
+</body>
+</html>

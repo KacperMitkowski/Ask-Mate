@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %} List of questions {% endblock %}
+{% block main %}
+
+<div id="div_with_selects">
+    <form action="/list/sorted" method="get" class="sort_label">
+        <label for="attribute" class="sort_label">Name</label>
+        <select id="attribute" name="attribute" class="sorting">
+            <option value="submission_time">Time</option>
+            <option value="title">Title</option>
+            <option value="view_number">Views</option>
+            <option value="vote_number">Vote</option>
+        </select>
+        <label for="order" class="sort_label">Order</label>
+        <select id="order" name="order" class="sorting">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <button type="submit" value="Submit" class="button">Sort questions</button>
+    </form>
+</div>
+
+<div id="table_div">
+    <table id="all_data_table">
+        <thead id="all_data_head_table">
+        <tr>
+            <th class="all_data_table_cell" style="padding: 25px;">C.N</th>
+            <th class="all_data_table_cell">Time</th>
+            <th class="all_data_table_cell">Title</th>
+            <th class="all_data_table_cell" style="padding-left: 15px; padding-right: 15px;">View</th>
+            <th class="all_data_table_cell" style="padding-left: 15px; padding-right: 15px;">Vote</th>
+            <th class="all_data_table_cell">Change</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for question in all_questions %}
+        <tr>
+            <td class="all_data_table_cell padding_class">{{ loop.index }}</td>
+            <td class="all_data_table_cell padding_class">{{ question['submission_time'] }}</td>
+            <td class="all_data_table_cell"><a href="/question/{{ question['id'] }}" class="block_link">{{
+                question["title"] }}</a></td>
+            <td class="all_data_table_cell padding_class" class="padding_class">{{ question["view_number"] }}</td>
+            <td class="all_data_table_cell padding_class" class="padding_class">{{ question["vote_number"] }}</td>
+            <td class="all_data_table_cell"><a href="/question/{{ question['id']}}/edit" class="edit_link">Edit
+                question</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

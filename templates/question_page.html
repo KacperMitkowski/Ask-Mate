@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block title %}Question page{% endblock %}
+{% block main %}
+    <table id="add_question_table">
+        <thead class="question_table_head">
+        <tr>
+            <th class="add_question_table_first_table_row">Time</th>
+            <th class="add_question_table_first_table_row">Title</th>
+            <th class="add_question_table_first_table_row">Message</th>
+            <th class="add_question_table_first_table_row">Image</th>
+            <th class="add_question_table_first_table_row">Vote</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="add_question_question_cell">{{ question['submission_time'] }}</td>
+            <td class="add_question_question_cell">{{ question['title'] }}</td>
+            <td class="add_question_question_cell">{{ question['message'] }}</td>
+            {% if question['image'] %}
+                <td class="add_question_question_cell"><img src="{{ question['image'] }}" width="300px" height="200px">
+                </td>
+            {% else %}
+                <td>No image</td>
+            {% endif %}
+            <td class="add_question_question_cell">
+                <form action="/question/{{ question['id'] }}" method="post">
+                    <button class="vote_button" name="vote_button" type="submit" value="plus">+</button>
+                    Vote {{ question['vote_number'] }}
+                    <button class="vote_button" name="vote_button" type="submit" value="minus">-</button>
+                </form>
+            </td>
+            <td><a href="/question/{{ question['id'] }}/new-answer">
+                <button class="button" type="button">Add answer</button>
+            </a></td>
+            <td>
+                <form action="/question/{{ question['id'] }}/delete" method="post">
+                    <button onclick="return confirm('You are going to delete question. Are you sure?')" type="submit"
+                            class="button">Delete question</button>
+                </form>
+            </td>
+            <td><a href="/question/{{ question['id'] }}/edit">
+                <button class="button" type="button">Edit question</button>
+            </a></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th class="answer_header">Time</th>
+            <th class="answer_header">Answer</th>
+            <th class="answer_header">Image</th>
+            <th class="answer_header" style="width: 272px;">Vote</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for answer in all_answers %}
+            <tr>
+                <td class="add_question_question_cell">{{ answer['submission_time'] }}</td>
+                <td class="add_question_question_cell" style="width: 603px;">{{ answer['message'] }}</td>
+                {% if answer['image'] %}
+                    <td class="add_question_question_cell"><img src="{{ answer['image'] }}" width="300px"
+                                                                height="200px"></td>
+                {% else %}
+                    <td>No image</td>
+                {% endif %}
+                <td>
+                    <form action="/question/{{ question['id'] }}/{{ answer['id'] }}" method="post"
+                          style="text-align: center;">
+                        <button class="vote_button" name="vote_button" type="submit" value="plus">+</button>
+                        <span class="add_question_question_cell">Vote {{ answer['vote_number'] }} </span>
+                        <button class="vote_button" name="vote_button" type="submit" value="minus">-</button>
+                    </form>
+                </td>
+                <td><form action="/answer/{{ answer['id'] }}/delete" method="post">
+                <button onclick="return confirm('You are going to delete answer. Are you sure?')" type="submit" class="button">Delete answer</button>
+            </form></td>
+            <td><a href="/answer/{{ answer['id'] }}/edit">
+            <button type="submit" class="button">Edit answer</button>
+        </a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
