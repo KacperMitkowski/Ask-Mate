@@ -14,7 +14,8 @@ That was a team project created during my education in Codecool.
 
 ## Used technology:
 * JS, HTML, CSS
-* Python, SQL
+* Flask
+* Python (Postgres)
 
 ## Team members:
 * https://github.com/KaliWWa
